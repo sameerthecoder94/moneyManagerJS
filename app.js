@@ -32,3 +32,36 @@ const inputCloseUsername = document.querySelector(
   '.form__input--user'
 );
 const inputClosePin = document.querySelector('.form__input--pin');
+
+// Dynamic Movements UI
+const accountOne = {
+  owner: 'Sameer Kunwor',
+  movements: [200, -300, 400, 500, -700, 1300, -1100, 1600],
+  interestRate: 1.5,
+  pin: 1111,
+};
+
+const accountTwo = {
+  movements: [1000, -600, 700, -300, 1300, -1100, 1600],
+  owner: 'Kim',
+  interestRate: 1.1,
+  pin: 2222,
+};
+
+const accounts = [accountOne, accountTwo];
+const [{ movements }] = accounts;
+
+// < 0 => withdrawal
+// > 0 => deposit
+movements.forEach((mov, i) => {
+  const type = mov > 0 ? 'deposit' : 'withdrawal';
+  const html = `
+  <div class="movements__row">
+    <div class="movements__type movements__type--${type}">
+      ${i + 1} ${type}
+    </div>
+    <div class="movements__value">${mov}</div>
+  </div>
+  `;
+  containerMovements.insertAdjacentHTML('afterbegin', html);
+});
