@@ -81,28 +81,37 @@ const displayMovements = (movements) => {
 };
 displayMovements(movements);
 
-// function with reduce() method to calculate total balance
-const displayBalance = (movements) => {
-  labelBalance.textContent = `$${movements.reduce(
-    (acc, mov) => acc + mov,
-    0
-  )}`;
-};
-displayBalance(movements);
+// // function with reduce() method to calculate total balance
+// const displayBalance = (movements) => {
+//   labelBalance.textContent = `$${movements.reduce(
+//     (acc, mov) => acc + mov,
+//     0
+//   )}`;
+// };
+// displayBalance(movements);
 
 // function with filter() and reduce() method to calculate total deposits, withdrawals, interest
 const displaySummary = (movements, rate) => {
-  labelSumIn.textContent = `$${movements
+  const depositsSum = movements
     .filter((mov) => mov > 0)
-    .reduce((acc, mov) => acc + mov, 0)}`;
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `$${depositsSum}`;
 
-  labelSumOut.textContent = `$${movements
+  const withdrawalsSum = movements
     .filter((mov) => mov < 0)
-    .reduce((acc, mov) => acc + mov, 0)}`;
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `$${withdrawalsSum}`;
 
-  labelSumInterest.textContent = `$${movements
+  const interest = movements
     .filter((mov) => mov > 0)
     .map((deposit) => +(deposit * (rate / 100)).toFixed(2))
-    .reduce((acc, int) => acc + int, 0)}`;
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `$${interest}`;
+
+  const totalBalance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `$${totalBalance}`;
+
+  // let totalBalance = depositsSum + interest + withdrawalsSum;
+  // console.log(totalBalance);
 };
 displaySummary(movements, interestRate);
