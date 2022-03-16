@@ -41,26 +41,22 @@ const accountOne = {
   pin: 1111,
 };
 
-// console.log(new String(accountOne.owner));
-const ownerLower = accountOne.owner.toLowerCase();
-// console.log(ownerLower);
-
-const splitOwner = ownerLower.split(' ');
-// console.log(splitOwner);
-
-// map method
-const username = splitOwner.map((name) => name[0]).join('');
-// console.log(username);
-
-accountOne.username = username;
-console.log(accountOne);
-
 const accountTwo = {
   movements: [1000, -600, 700, -300, 1300, -1100, 1600],
   owner: 'Kim',
   interestRate: 1.1,
   pin: 2222,
 };
+
+// chaining methods to generate username
+const username = accountOne.owner
+  .toLowerCase()
+  .split(' ')
+  .map((name) => name[0])
+  .join('');
+
+accountOne.username = username;
+console.log(accountOne);
 
 const accounts = [accountOne, accountTwo];
 const [{ movements }] = accounts;
