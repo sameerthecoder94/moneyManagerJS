@@ -81,7 +81,7 @@ const displayMovements = (movements) => {
 };
 displayMovements(movements);
 
-// reduce() method to calculate total balance
+// function with reduce() method to calculate total balance
 const displayBalance = (movements) => {
   labelBalance.textContent = `$${movements.reduce(
     (acc, mov) => acc + mov,
