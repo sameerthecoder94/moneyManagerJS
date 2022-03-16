@@ -2,4 +2,4 @@
 
 - [x] Targeting DOM elements from JavaScript
 - [x] Creating DOM elements from JavaScript
-- [x] forEach method
+- [x] forEach, map method

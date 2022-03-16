@@ -41,6 +41,20 @@ const accountOne = {
   pin: 1111,
 };
 
+// console.log(new String(accountOne.owner));
+const ownerLower = accountOne.owner.toLowerCase();
+// console.log(ownerLower);
+
+const splitOwner = ownerLower.split(' ');
+// console.log(splitOwner);
+
+// map method
+const username = splitOwner.map((name) => name[0]).join('');
+// console.log(username);
+
+accountOne.username = username;
+console.log(accountOne);
+
 const accountTwo = {
   movements: [1000, -600, 700, -300, 1300, -1100, 1600],
   owner: 'Kim',
@@ -53,6 +67,7 @@ const [{ movements }] = accounts;
 
 // < 0 => withdrawal
 // > 0 => deposit
+// forEach method
 movements.forEach((mov, i) => {
   const type = mov > 0 ? 'deposit' : 'withdrawal';
   const html = `
