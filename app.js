@@ -48,9 +48,9 @@ const accountTwo = {
   pin: 2222,
 };
 
-// create a function to generate username
 const accounts = [accountOne, accountTwo];
 
+// function to generate username
 const createUsername = (accounts) => {
   accounts.forEach((account) => {
     account.username = account.owner
@@ -62,22 +62,21 @@ const createUsername = (accounts) => {
 };
 createUsername(accounts);
 
-console.log(accountOne);
-console.log(accountTwo);
-
 const [{ movements }] = accounts;
-// < 0 => withdrawal
-// > 0 => deposit
-// forEach method
-movements.forEach((mov, i) => {
-  const type = mov > 0 ? 'deposit' : 'withdrawal';
-  const html = `
-  <div class="movements__row">
-    <div class="movements__type movements__type--${type}">
-      ${i + 1} ${type}
-    </div>
-    <div class="movements__value">${mov}</div>
-  </div>
-  `;
-  containerMovements.insertAdjacentHTML('afterbegin', html);
-});
+
+// function to generate movements
+const displayMovements = (movements) => {
+  movements.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+          <div class="movements__row">
+            <div class="movements__type movements__type--${type}">
+              ${i + 1} ${type}
+            </div>
+            <div class="movements__value">${mov}</div>
+          </div>
+          `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(movements);
