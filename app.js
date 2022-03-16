@@ -90,8 +90,8 @@ const displayBalance = (movements) => {
 };
 displayBalance(movements);
 
-// function with filter() and reduce() method to calculate total deposits and withdrawals
-const calcDepositsAndWithdrawalsSum = (movements) => {
+// function with filter() and reduce() method to calculate total deposits, withdrawals, interest
+const displaySummary = (movements, rate) => {
   labelSumIn.textContent = `$${movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0)}`;
@@ -99,14 +99,10 @@ const calcDepositsAndWithdrawalsSum = (movements) => {
   labelSumOut.textContent = `$${movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0)}`;
-};
-calcDepositsAndWithdrawalsSum(movements);
 
-//function to calc interest
-const calcInterest = (movements, interestRate) => {
   labelSumInterest.textContent = `$${movements
     .filter((mov) => mov > 0)
-    .map((deposit) => +(deposit * (interestRate / 100)).toFixed(2))
+    .map((deposit) => +(deposit * (rate / 100)).toFixed(2))
     .reduce((acc, int) => acc + int, 0)}`;
 };
-calcInterest(movements, interestRate);
+displaySummary(movements, interestRate);
