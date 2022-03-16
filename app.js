@@ -62,7 +62,7 @@ const createUsername = (accounts) => {
 };
 createUsername(accounts);
 
-const [{ movements }] = accounts;
+const [{ movements, interestRate }] = accounts;
 
 // function to generate movements
 const displayMovements = (movements) => {
@@ -101,3 +101,12 @@ const calcDepositsAndWithdrawalsSum = (movements) => {
     .reduce((acc, mov) => acc + mov, 0)}`;
 };
 calcDepositsAndWithdrawalsSum(movements);
+
+//function to calc interest
+const calcInterest = (movements, interestRate) => {
+  labelSumInterest.textContent = `$${movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => +(deposit * (interestRate / 100)).toFixed(2))
+    .reduce((acc, int) => acc + int, 0)}`;
+};
+calcInterest(movements, interestRate);
