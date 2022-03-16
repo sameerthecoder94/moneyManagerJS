@@ -108,10 +108,21 @@ const displaySummary = (movements, rate) => {
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `$${interest}`;
 
-  const totalBalance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `$${totalBalance}`;
+  // const totalBalance = movements.reduce((acc, mov) => acc + mov, 0);
+  // labelBalance.textContent = `$${totalBalance}`;
 
-  // let totalBalance = depositsSum + interest + withdrawalsSum;
-  // console.log(totalBalance);
+  let totalBalance = depositsSum + interest + withdrawalsSum;
+  labelBalance.textContent = `$${totalBalance}`;
 };
 displaySummary(movements, interestRate);
+
+// event listener
+btnLogin.addEventListener('click', (e) => {
+  e.preventDefault();
+  const currentAccount = accounts.find(
+    (account) => account.pin === +inputLoginPin.value
+  );
+  if (currentAccount) {
+    labelWelcome.textContent = `Welcome ${currentAccount.owner}`;
+  }
+});
