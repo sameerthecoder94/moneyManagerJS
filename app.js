@@ -48,15 +48,20 @@ const accountTwo = {
   pin: 2222,
 };
 
-// refactored to generate username
+// create a function to generate username
 const accounts = [accountOne, accountTwo];
-accounts.forEach((account) => {
-  account.username = account.owner
-    .toLowerCase()
-    .split(' ')
-    .map((name) => name[0])
-    .join('');
-});
+
+const createUsername = (accounts) => {
+  accounts.forEach((account) => {
+    account.username = account.owner
+      .toLowerCase()
+      .split(' ')
+      .map((name) => name[0])
+      .join('');
+  });
+};
+createUsername(accounts);
+
 console.log(accountOne);
 console.log(accountTwo);
 
