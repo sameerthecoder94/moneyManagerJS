@@ -89,3 +89,17 @@ const displayBalance = (movements) => {
   )}`;
 };
 displayBalance(movements);
+
+// filter() and reduce() to calculate total deposits
+const depositsSum = movements
+  .filter((mov) => mov > 0)
+  .reduce((acc, mov) => acc + mov, 0);
+
+labelSumIn.textContent = `$${depositsSum}`;
+
+// filter() and reduce() to calculate total withdrawals
+const withdrawalsSum = movements
+  .filter((mov) => mov < 0)
+  .reduce((acc, mov) => acc + mov, 0);
+
+labelSumOut.textContent = `$${withdrawalsSum}`;
