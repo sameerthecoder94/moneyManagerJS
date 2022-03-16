@@ -48,19 +48,18 @@ const accountTwo = {
   pin: 2222,
 };
 
-// chaining methods to generate username
-const username = accountOne.owner
-  .toLowerCase()
-  .split(' ')
-  .map((name) => name[0])
-  .join('');
-
-accountOne.username = username;
-console.log(accountOne);
-
 const accounts = [accountOne, accountTwo];
-const [{ movements }] = accounts;
+accounts.forEach((account) => {
+  account.username = account.owner
+    .toLowerCase()
+    .split(' ')
+    .map((name) => name[0])
+    .join('');
+});
+console.log(accountOne);
+console.log(accountTwo);
 
+const [{ movements }] = accounts;
 // < 0 => withdrawal
 // > 0 => deposit
 // forEach method
