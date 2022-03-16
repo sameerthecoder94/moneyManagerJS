@@ -90,16 +90,14 @@ const displayBalance = (movements) => {
 };
 displayBalance(movements);
 
-// filter() and reduce() to calculate total deposits
-const depositsSum = movements
-  .filter((mov) => mov > 0)
-  .reduce((acc, mov) => acc + mov, 0);
+// function with filter() and reduce() method to calculate total deposits and withdrawals
+const calcDepositsAndWithdrawalsSum = (movements) => {
+  labelSumIn.textContent = `$${movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0)}`;
 
-labelSumIn.textContent = `$${depositsSum}`;
-
-// filter() and reduce() to calculate total withdrawals
-const withdrawalsSum = movements
-  .filter((mov) => mov < 0)
-  .reduce((acc, mov) => acc + mov, 0);
-
-labelSumOut.textContent = `$${withdrawalsSum}`;
+  labelSumOut.textContent = `$${movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0)}`;
+};
+calcDepositsAndWithdrawalsSum(movements);
