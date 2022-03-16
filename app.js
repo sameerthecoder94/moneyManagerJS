@@ -80,3 +80,12 @@ const displayMovements = (movements) => {
   });
 };
 displayMovements(movements);
+
+// reduce() method to calculate total balance
+const displayBalance = (movements) => {
+  labelBalance.textContent = `$${movements.reduce(
+    (acc, mov) => acc + mov,
+    0
+  )}`;
+};
+displayBalance(movements);
