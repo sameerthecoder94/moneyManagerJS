@@ -1,3 +1,5 @@
+'use strict';
+
 // function to generate movements
 const displayMovements = (movements) => {
   movements.forEach((mov, i) => {
@@ -34,10 +36,11 @@ const displaySummary = (movements, rate) => {
 
   // const totalBalance = movements.reduce((acc, mov) => acc + mov, 0);
   // labelBalance.textContent = `$${totalBalance}`;
-  let totalBalance = (
+  const totalBalance = +(
     depositsSum +
     interest +
     withdrawalsSum
   ).toFixed(2);
+  currentAccount.totalBalance = totalBalance;
   labelBalance.textContent = `$${totalBalance}`;
 };

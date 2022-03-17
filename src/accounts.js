@@ -1,3 +1,5 @@
+'use strict';
+
 const accountOne = {
   owner: 'Sameer Kunwor',
   movements: [200, -300, 400, 500, -700, 1300, -1100, 1600],
@@ -19,4 +21,4 @@ const accountThree = {
   pin: 3333,
 };
 
-const accounts = [accountOne, accountTwo];
+const accounts = [accountOne, accountTwo, accountThree];
