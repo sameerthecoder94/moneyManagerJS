@@ -62,8 +62,6 @@ const createUsername = (accounts) => {
 };
 createUsername(accounts);
 
-const [{ movements, interestRate }] = accounts;
-
 // function to generate movements
 const displayMovements = (movements) => {
   movements.forEach((mov, i) => {
@@ -79,16 +77,6 @@ const displayMovements = (movements) => {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(movements);
-
-// // function with reduce() method to calculate total balance
-// const displayBalance = (movements) => {
-//   labelBalance.textContent = `$${movements.reduce(
-//     (acc, mov) => acc + mov,
-//     0
-//   )}`;
-// };
-// displayBalance(movements);
 
 // function with filter() and reduce() method to calculate total deposits, withdrawals, interest
 const displaySummary = (movements, rate) => {
@@ -110,19 +98,31 @@ const displaySummary = (movements, rate) => {
 
   // const totalBalance = movements.reduce((acc, mov) => acc + mov, 0);
   // labelBalance.textContent = `$${totalBalance}`;
-
-  let totalBalance = depositsSum + interest + withdrawalsSum;
+  let totalBalance = (
+    depositsSum +
+    interest +
+    withdrawalsSum
+  ).toFixed(2);
   labelBalance.textContent = `$${totalBalance}`;
 };
-displaySummary(movements, interestRate);
 
 // event listener
 btnLogin.addEventListener('click', (e) => {
   e.preventDefault();
   const currentAccount = accounts.find(
-    (account) => account.pin === +inputLoginPin.value
+    (account) =>
+      account.username === inputLoginUsername.value &&
+      account.pin === +inputLoginPin.value
   );
   if (currentAccount) {
+    containerApp.style.opacity = 1;
+    inputLoginUsername.value = inputLoginPin.value = '';
     labelWelcome.textContent = `Welcome ${currentAccount.owner}`;
   }
+
+  displayMovements(currentAccount.movements);
+  displaySummary(
+    currentAccount.movements,
+    currentAccount.interestRate
+  );
 });
